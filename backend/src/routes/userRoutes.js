@@ -6,13 +6,14 @@ const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 // const { route } = require('./bookRoutes');
 const { verifyToken, authorizeRole } = require('../middleware/authMiddleware');
+const { validateRegister, validateLogin } = require('../middleware/validationMiddleware');
 
 
 //define a secrete JWT key 
-const JWT_SECRET = process.env.JWT_SECRET || "secret_key_123";
+const JWT_SECRET = process.env.JWT_SECRET; 
 
 //user registration route to create new user POST/user/register (only for the ADMIN)
-router.post('/register', verifyToken, authorizeRole('admin'), async (req, res) => {
+router.post('/register', verifyToken, authorizeRole('admin'), ...validateRegister, async (req, res) => {
     try{
 
         // console.log('🔍 Login attempt with email:', email);
@@ -35,7 +36,7 @@ router.post('/register', verifyToken, authorizeRole('admin'), async (req, res) =
 });
 
 //login route to login the user and Authentication $ get token: POST/users/login 
-router.post('/login', async (req, res) => {
+router.post('/login', ...validateLogin, async (req, res) => {
     const {email, password } = req.body;
 
     try {

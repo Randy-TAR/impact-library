@@ -1,0 +1,5 @@
+.env
+node_modules/*
+
+# Keep the uploads folder but ignore its contents
+!src/uploads/.gitkeep

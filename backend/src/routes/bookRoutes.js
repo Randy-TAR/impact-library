@@ -5,6 +5,8 @@ const fs = require('fs'); // biult-in Node.js file system module
 const Book = require('../models/bookModel'); // this is the link to the model we created for the books
 const upload = require('../middleware/uploadMiddleware')
 const { verifyToken, authorizeRole } = require('../middleware/authMiddleware'); // the middleware to chack only lib to add book
+const { validateBook } = require('../middleware/validationMiddleware');
+
 const { error } = require('console');
 const { title } = require('process');
 
@@ -119,7 +121,7 @@ router.get('/download/:id', async(req, res) => {
 
 //uploading a new book and the pdf file: POST/
 // multer handles the uploaded file field named 'file' : upload.single('file)
-router.post('/', verifyToken, authorizeRole('librarian', 'admin'), upload.single('file'), async(req, res) => {
+router.post('/', verifyToken, authorizeRole('librarian', 'admin'), upload.single('file'), ...validateBook, async(req, res) => {
     try{
         // checking if a file was actually uploaded 
         if(!req.file) {
@@ -135,7 +137,7 @@ router.post('/', verifyToken, authorizeRole('librarian', 'admin'), upload.single
             category: req.body.category,
             description: req.body.description,
             file_path: `uploads/${req.file.filename}`,  // the file path
-            file_size: `${(req.file.size/ (1024*1024)).toFixed(2)} MB`, // this converts the bytes to MB
+            file_size: `${(fs.statSync(req.file.path).size / (1024 * 1024)).toFixed(2)} MB`, // this converts the bytes to MB
             format: 'PDF'
         };
 
@@ -154,7 +156,7 @@ router.post('/', verifyToken, authorizeRole('librarian', 'admin'), upload.single
 });
 
 // Update the books: PUT/:id
-router.put('/:id', verifyToken, authorizeRole('librarian', 'admin'), async(req, res) => {
+router.put('/:id', verifyToken, authorizeRole('librarian', 'admin'), ...validateBook, async(req, res) => {
     try{
         const updatedBook = await Book.updateBook(req.params.id, req.body);
 

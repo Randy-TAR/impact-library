@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET || "secret_key_123";
+
+const JWT_SECRET = process.env.JWT_SECRET; 
 
 // const authMiddleware = {
 //     // Verifying if the user is logged in with the JWT token
