@@ -2,68 +2,68 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
 
 const express = require('express');
+const cors = require('cors'); // IMPORTANT: Add CORS
 const path = require('path');
 const pool = require('./config/db');
 const bookRoutes = require('./routes/bookRoutes');
 const userRoutes = require('./routes/userRoutes');
 const dashbourdRoutes = require('./routes/dashboardRoutes');
-const { error } = require('console');
-const { json } = require('stream/consumers');
-// const borrowRoutes = require('./routes/borrowRoutes');
+const borrowRoutes = require('./routes/borrowRoutes'); // UNCOMMENT THIS
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// IMPORTANT: Enable CORS first (before routes)
+app.use(cors()); // This allows all origins to access your API
+
 // Middleware: This parses JSON data sent in POST requests
-app.use(express.json()); // all express to ready the req.body
+app.use(express.json());
 
-// serve uploads PDF files as static files eg http://localhost:3000/uploads/filename.pdf
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// serve uploads PDF files as static files
+app.use('/uploads', express.static(path.join(__dirname, 'src/uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'src/uploads')));
 
-app.use('/api/books', bookRoutes); //makes all book routes start with api/books
+// Routes
+app.use('/api/books', bookRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/dashboard', dashbourdRoutes);
-// app.use('/api/borrows', borrowRoutes);
+app.use('/api/borrows', borrowRoutes); // UNCOMMENT THIS
 
-// welcome route
+// Welcome route
 app.get('/', (req, res) => {
     res.send('📚 Welcome to Impact Library API');
 });
 
 async function testConnection() {
-    try{
-        // testing the connection 
+    try {
         const client = await pool.connect();
-        console.log('✅ Success: Connected to impact_library_db')
-
-        // simple query to display time
+        console.log('✅ Success: Connected to impact_library_db');
         const res = await client.query('SELECT NOW()');
         console.log('🕒 Database Time:', res.rows[0].now);
-
         client.release();
     } catch (err) {
         console.error('❌ Connection Error:', err.message);
     }
-};
+}
 
 // Our overall error handler
 app.use((err, req, res, next) => {
     // multer file size exceeded
-    if (err.code === 'LIMIT_FILE_SIZE'){
+    if (err.code === 'LIMIT_FILE_SIZE') {
         return res.status(400).json({
             error: "File too large. (max 50MB)"
         });
     }
 
     // checking file type
-    if (err.message === 'Only PDF files are allowes for now'){
+    if (err.message === 'Only PDF files are allowes for now') {
         return res.status(400).json({
             error: "Only PDF files are allowed"
         });
     }
 
     // invalid JSON body
-    if (err.type === 'entity.parse.failed'){
+    if (err.type === 'entity.parse.failed') {
         return res.status(400).json({
             error: "Invalid JSON in request body"
         });
@@ -71,17 +71,16 @@ app.use((err, req, res, next) => {
 
     // any other error
     console.error('❌ Unhandled Error:', err.message);
-    res.status(500),json({
+    res.status(500).json({
         error: "Something went wrong in the server",
         details: err.message
     });
 });
 
-
-
 app.listen(PORT, () => {
     console.log(`🚀 Server is running on http://localhost:${PORT}`);
     console.log(`📡 GET    http://localhost:${PORT}/api/books`);
     console.log(`📩 POST   http://localhost:${PORT}/api/books`);
+    console.log(`📚 POST   http://localhost:${PORT}/api/borrows`);
     testConnection();
-})
+});
