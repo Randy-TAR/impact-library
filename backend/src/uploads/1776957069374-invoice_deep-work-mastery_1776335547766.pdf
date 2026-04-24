@@ -1,0 +1,102 @@
+
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Invoice</title>
+        <style>
+          body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 50px;
+            margin: 0;
+          }
+          .header {
+            text-align: center;
+            margin-bottom: 30px;
+          }
+          .company {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+          }
+          .invoice-title {
+            font-size: 18px;
+            color: #666;
+            margin-top: 5px;
+          }
+          .section {
+            margin-bottom: 25px;
+          }
+          .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+          }
+          .row {
+            margin-bottom: 8px;
+          }
+          .label {
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+          }
+          .value {
+            display: inline-block;
+          }
+          .product-box {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+          }
+          .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+          }
+          @media print {
+            body { padding: 0; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <div class="company">DeepKnowledge</div>
+          <div class="invoice-title">Official Invoice</div>
+        </div>
+        
+        <div class="section">
+          <div class="row"><span class="label">Date:</span><span class="value">4/16/2026, 11:32:26 AM</span></div>
+          <div class="row"><span class="label">Transaction ID:</span><span class="value">cs_test_a1pqxt8mCXvEu36r4A5gbR4FkQVTWXtsbFv7dHAzlz608brUC4AZwqvXzY</span></div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">Bill To:</div>
+          <div class="row"><span class="label">Name:</span><span class="value">User</span></div>
+          <div class="row"><span class="label">Email:</span><span class="value"></span></div>
+        </div>
+        
+        <div class="product-box">
+          <div class="section-title" style="margin-top: 0;">Product Details:</div>
+          <div class="row"><span class="label">Product:</span><span class="value">Deep Work Mastery</span></div>
+          <div class="row"><span class="label">Product ID:</span><span class="value">deep-work-mastery</span></div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">Payment Summary:</div>
+          <div class="row"><span class="label">Status:</span><span class="value">✅ Paid</span></div>
+          <div class="row"><span class="label">Amount:</span><span class="value">Paid</span></div>
+          <div class="row"><span class="label">Payment Method:</span><span class="value">Stripe Secure</span></div>
+        </div>
+        
+        <div class="footer">
+          Thank you for your purchase!<br/>
+          DeepKnowledge
+        </div>
+      </body>
+      </html>
+    

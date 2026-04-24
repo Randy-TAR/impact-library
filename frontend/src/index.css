@@ -1,0 +1,486 @@
+/* Custom animations and overrides */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate__fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Bootstrap overrides */
+.btn-primary {
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+  background: linear-gradient(135deg, #0b5ed7, #0a58ca);
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Custom animations and transitions */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.hover-primary:hover {
+  color: #0d6efd !important;
+}
+
+.border-dashed {
+  border: 2px dashed #dee2e6 !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Gradient backgrounds */
+.bg-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-primary-gradient {
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+}
+
+/* Hover effects */
+.btn-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+/* Responsive text */
+@media (max-width: 768px) {
+  .display-6 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Loading animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.2em;
+}
+
+/* Table responsiveness improvements */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table th,
+.table td {
+  white-space: nowrap;
+}
+
+/* For very small screens, allow wrapping */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    white-space: normal;
+    min-width: 120px;
+  }
+}
+
+/* Badge animations */
+.badge {
+  transition: all 0.3s ease;
+}
+
+.badge:hover {
+  transform: scale(1.05);
+}
+
+/* Button hover effects */
+.btn-success {
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Stats Card Hover Effects */
+.hover-shadow {
+  transition: all 0.3s ease;
+}
+
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* Transition for all elements */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Custom scrollbar for charts */
+.recharts-wrapper {
+  cursor: pointer;
+}
+
+.recharts-tooltip-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient backgrounds for stats cards (optional) */
+.bg-primary-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-success-gradient {
+  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.bg-info-gradient {
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.bg-warning-gradient {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+/* Chart tooltip customization */
+.recharts-default-tooltip {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  padding: 12px !important;
+}
+
+.recharts-tooltip-label {
+  font-weight: 600 !important;
+  color: #1f2937 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Responsive adjustments for charts */
+@media (max-width: 768px) {
+  .recharts-wrapper {
+    font-size: 10px;
+  }
+  
+  .recharts-legend-item {
+    font-size: 10px !important;
+  }
+}
+
+/* Badge styling for category tags */
+.badge {
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+}
+
+/* Card border radius */
+.card {
+  border-radius: 1rem !important;
+}
+
+.card-body {
+  border-radius: 1rem !important;
+}
+
+/* Loading animation for chart data */
+@keyframes chartFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: chartFadeIn 0.5s ease-out;
+}
+
+/* Gradient text for brand */
+.bg-gradient-text {
+  background: linear-gradient(135deg, #0d6efd, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Navbar link hover effects */
+.nav-link {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #0d6efd !important;
+  transform: translateY(-2px);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #0d6efd, #8b5cf6);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 80%;
+}
+
+/* Active nav link */
+.nav-link.active {
+  color: #0d6efd !important;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  width: 80%;
+}
+
+/* Dropdown customization */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin-top: 8px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.dropdown-item {
+  padding: 8px 20px;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.1), rgba(139, 92, 246, 0.1));
+  transform: translateX(5px);
+}
+
+/* Navbar toggler customization */
+.navbar-toggler {
+  border: none;
+  padding: 8px;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* Mobile menu animations */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    animation: slideDown 0.3s ease-out;
+    padding: 1rem 0;
+  }
+  
+  .nav-link {
+    padding: 10px 0 !important;
+  }
+  
+  .nav-link::after {
+    bottom: 0;
+  }
+}
+
+/* Animation keyframes */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sticky navbar */
+.sticky-top {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Button hover effects */
+.btn-primary {
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+/* User avatar in navbar */
+.rounded-circle {
+  object-fit: cover;
+}
+
+/* Responsive text */
+@media (max-width: 768px) {
+  .fs-4 {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* File upload drag and drop styles */
+.border-dashed {
+  border: 2px dashed #dee2e6;
+  transition: all 0.3s ease;
+}
+
+.border-dashed:hover {
+  border-color: #0d6efd;
+  background-color: #f8f9fa;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Progress bar styling */
+.progress {
+  height: 8px;
+  border-radius: 1rem;
+}
+
+.progress-bar {
+  transition: width 0.3s ease;
+}
+
+/* Form control focus effects */
+.form-control:focus, 
+.form-select:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sticky-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background: white;
+    padding: 1rem;
+    margin: 0;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .modal-body {
+    padding-bottom: 80px;
+  }
+}
+
+/* Animation for file upload area */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* Scroll to top button area */
+.sticky-bottom {
+  background: white;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+}
