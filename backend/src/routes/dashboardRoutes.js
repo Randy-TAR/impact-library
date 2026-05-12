@@ -3,6 +3,52 @@ const router = express.Router();
 const pool = require('../config/db');
 const { verifyToken, authorizeRole } = require('../middleware/authMiddleware');
 
+/**
+ * @swagger
+ * tags:
+ *   name: Dashboard
+ *   description: System statistics — admin and librarian only
+ */
+
+/**
+ * @swagger
+ * /api/dashboard:
+ *   get:
+ *     summary: Get dashboard statistics
+ *     tags: [Dashboard]
+ *     security:
+ *       - bearerAuth: []
+ *     description: Returns total books, downloads, top books, categories and recent uploads
+ *     responses:
+ *       200:
+ *         description: Dashboard statistics
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 total_books:
+ *                   type: integer
+ *                   example: 25
+ *                 total_downloads:
+ *                   type: integer
+ *                   example: 142
+ *                 top_books:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Book'
+ *                 books_by_category:
+ *                   type: array
+ *                 recent_uploads:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Book'
+ *                 users:
+ *                   type: array
+ *       403:
+ *         description: Admin or librarian access required
+ */
+
 // this routes fetches statistics information for ADMIN $ LIBRARIAN: GET/
 router.get('/', verifyToken, authorizeRole('admin', 'librarian'), async(req, res) => {
     try{

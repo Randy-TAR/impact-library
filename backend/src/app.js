@@ -4,11 +4,12 @@ require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
 const express = require('express');
 const cors = require('cors'); // IMPORTANT: Add CORS
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');  
+const swaggerSpec = require('./config/swagger');  
 const pool = require('./config/db');
 const bookRoutes = require('./routes/bookRoutes');
 const userRoutes = require('./routes/userRoutes');
 const dashbourdRoutes = require('./routes/dashboardRoutes');
-const borrowRoutes = require('./routes/borrowRoutes'); // UNCOMMENT THIS
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,7 +28,16 @@ app.use('/uploads', express.static(path.join(__dirname, 'src/uploads')));
 app.use('/api/books', bookRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/dashboard', dashbourdRoutes);
-app.use('/api/borrows', borrowRoutes); // UNCOMMENT THIS
+
+// Access docs at: http://localhost:3000/api-docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+    customSiteTitle: 'Impact Library API Docs',
+    customCss: `
+        .topbar { background-color: #1A1A1A !important; }
+        .topbar-wrapper img { content: url(''); }
+        .topbar-wrapper::after { content: '📚 Impact Library API'; color: #D4A017; font-size: 1.2rem; font-weight: bold; }
+    `
+}));
 
 // Welcome route
 app.get('/', (req, res) => {

@@ -103,8 +103,36 @@ const validateLogin = [
     checkValidation
 ];
 
-module.exports = {
-    validateBook,
-    validateRegister,
-    validateLogin
-};
+// ─────────────────────────────────────────────
+// PUBLIC USER REGISTRATION VALIDATION
+// Role is NOT required — defaults to 'user'
+// ─────────────────────────────────────────────
+const validatePublicRegister = [
+    body('name')
+        .trim()
+        .notEmpty()
+        .withMessage('Name is required'),
+
+    body('email')
+        .trim()
+        .notEmpty()
+        .withMessage('Email is required')
+        .isEmail()
+        .withMessage('Please provide a valid email address'),
+
+    body('password')
+        .notEmpty()
+        .withMessage('Password is required')
+        .isLength({ min: 6 })
+        .withMessage('Password must be at least 6 characters'),
+
+    // run the validation checker after all rules
+    checkValidation
+];
+
+// module.exports = {
+//     validateBook,
+//     validateRegister,
+//     validateLogin
+// };
+module.exports = { validateBook, validateRegister, validatePublicRegister, validateLogin };
